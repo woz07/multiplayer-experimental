@@ -4,7 +4,7 @@ import os
 # gets IP of internet service provider
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 try:
-    s.connect(('8.8.8.8', 80))  # Dummy address
+    s.connect(('8.8.8.8', 80))  # dummy address
     ip = s.getsockname()[0]
 except Exception:
     ip = '127.0.0.1'

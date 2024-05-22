@@ -15,8 +15,6 @@ public class Launcher {
 		config.setForegroundFPS(60);
 		config.setTitle("Multiplayer Experimental");
 		new Lwjgl3Application(new Game(), config);
-		
-		System.out.println(read());
 	}
 	
 	/**

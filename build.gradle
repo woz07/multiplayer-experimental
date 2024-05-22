@@ -49,6 +49,9 @@ project(":desktop") {
         implementation project(":core")
         api "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
         api "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+
+        implementation 'kryonet:kryonet:2.21'
+        implementation 'com.esotericsoftware:kryo:5.6.0'
     }
 }
 
@@ -58,5 +61,8 @@ project(":core") {
 
     dependencies {
         api "com.badlogicgames.gdx:gdx:$gdxVersion"
+
+        implementation 'kryonet:kryonet:2.21'
+        implementation 'com.esotericsoftware:kryo:5.6.0'
     }
 }

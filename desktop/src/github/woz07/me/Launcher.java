@@ -47,7 +47,7 @@ public class Launcher {
 	public static String read() {
 		try (BufferedReader reader = new BufferedReader((new FileReader("data/temp.txt")))) {
 			// As file only contains 1 line data there's no need for while loop to loop through entire file
-			return reader.readLine(); // Could be null
+			return reader.readLine(); // Could be null / empty but that must be dealt with by function which calls this
 		} catch (IOException e) {
 			System.err.println("Failure to read data/temp.txt file as path is incorrect");
 			e.printStackTrace();

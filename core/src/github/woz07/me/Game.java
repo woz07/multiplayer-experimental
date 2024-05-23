@@ -13,6 +13,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class Game extends ApplicationAdapter {
 	private Stage stage;
 	private Skin skin;
@@ -66,5 +70,44 @@ public class Game extends ApplicationAdapter {
 		
 		batch.dispose();
 //		img.dispose();
+	}
+	
+	/**
+	 * Method to execute python scripts
+	 * @param path The path where the script is stored at
+	 * @return The return code
+	 */
+	public static int execute(String path) {
+		Process process;
+		try {
+			final String[] command = {"python", path};
+			ProcessBuilder builder = new ProcessBuilder(command);
+			process = builder.start();
+			int exit = process.waitFor();
+			process.destroy();
+			
+			return exit;
+		} catch (IOException | InterruptedException e) {
+			System.err.println("Failure to execute file: " + path);
+			e.printStackTrace();
+			
+			return -1;
+		}
+	}
+	
+	/**
+	 * Method to read data from data/temp.txt
+	 * @return The data read from temp.txt
+	 */
+	public static String read() {
+		try (BufferedReader reader = new BufferedReader((new FileReader("data/temp.txt")))) {
+			// As file only contains 1 line data there's no need for while loop to loop through entire file
+			return reader.readLine(); // Could be null / empty but that must be dealt with by function which calls this
+		} catch (IOException e) {
+			System.err.println("Failure to read data/temp.txt file as path is incorrect");
+			e.printStackTrace();
+			
+			return null;
+		}
 	}
 }

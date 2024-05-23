@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class GClient {
     private Client client;
-    public GClient() throws IOException {
+    public GClient(String ip) throws IOException {
         client = new Client();
         
         Kryo kryo = client.getKryo();
@@ -27,7 +27,7 @@ public class GClient {
         
         new Thread(client).start();
         
-        client.connect(5000, "SOME_IP_ADDRESS", 54555, 54777);
+        client.connect(5000, ip, 54555, 54777);
     }
     
     /**
